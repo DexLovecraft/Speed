@@ -65,7 +65,7 @@ const altitudeConversion = (e, type) => {
 
 const machOperation = (temperature) => {
     let machValue = 0
-    machValue = speedKnots/(39*Math.sqrt(temperature))
+    machValue = speed/(39*Math.sqrt(temperature))
     machValue = machValue.toFixed(2)
     machInput.value = machValue
 }
