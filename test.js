@@ -31,14 +31,11 @@ const altitudeFootInput = document.getElementById('altitudeFoot')
 const calculateButton = document.getElementById('Calculate')
 const machInput = document.getElementById('Mach')
 let dataTemperature = 0
-let speedKnots = 1.944
-let speedMetric = 1
-let keys = 0
-let machValue = 0
-let altitudeMeter = 0
+let speed = 1.944
 
 const temperatureConversion = (AltitudeUser) => {
-    
+    let keys = 0
+
     if (AltitudeUser > 11000) {
         keys = 11000
     }
@@ -52,32 +49,36 @@ const temperatureConversion = (AltitudeUser) => {
     dataTemperature = Temperature[keys] + 273.15
 } 
 
-const altitudeMetricConversion = (footUser) => {
-    altitudeMeter = footUser*0.3048 
-    altitudeMetricInput.value = altitudeMeter.toFixed(0)
+const altitudeConversion = (e, type) => {
+    let altitudeMeter = 0
+    if (type == "foot") {
+        altitudeMeter = e.target.value*0.3048
+        altitudeMetricInput.value = altitudeMeter.toFixed(0)
+    }
+    else if (type == "meter"){
+        altitudeMeter = e.target.value
+        altitudeFootInput.value = (e.target.value/0.3048).toFixed(0)
+    }
+    temperatureReset()
     temperatureConversion(altitudeMeter)
 }
 
-const altitudeFootConversion = (metricUser) => {
-    altitudeMeter = metricUser 
-    altitudeFootInput.value = (metricUser/0.3048).toFixed(0)
-    temperatureConversion(altitudeMeter)
-}
-
-const speedKnotsConversion = (speedMetricUser) => {
-    speedKnots = speedMetricUser*1.944
-    speedKnotsInput.value = speedKnots.toFixed(2)
-}
-
-const speedMetricConversion = (speedKnotsUser) => {
-    speedKnots = speedKnotsUser
-    speedMetric = speedKnotsUser/1.944
-    speedMetricInput.value = speedMetric.toFixed(2)
+const speedConversion = (e, type) => {
+    if (type == "knots") {
+        speed = e.target.value
+        speedMetricInput.value = e.target.value/1.944.toFixed(0)
+    }
+    else if (type == "meter"){
+        speed = e.target.value*1.944
+        speedKnotsInput.value = speed.toFixed(0)
+    }
 }
 
 const machOperation = (temperature) => {
+    let machValue = 0
     machValue = speedKnots/(39*Math.sqrt(temperature))
-    machInput.value = machValue.toFixed(2) 
+    machValue = machValue.toFixed(2)
+    machInput.value = machValue
 }
 
 const speedOperation = (mach, temperature) => {
@@ -92,33 +93,8 @@ const temperatureReset = () => {
     machInput.value = 0
 }
 
-const speedMetricTrigger = (e) => {
-    speedKnotsConversion(e.target.value)
-    machOperation(dataTemperature)
-} 
-
-const speedKnotsTrigger = (e) => {
-    speedMetricConversion(e.target.value)
-    machOperation(dataTemperature)
-}   
-
-const machTrigger = (e) => {
-    speedOperation(e.target.value, dataTemperature)
-}
-
-const altitudeFootTrigger = (e) => {
-    altitudeMetricConversion(e.target.value)
-    temperatureReset()
-}
-
-const altitudeMetricTrigger = (e) => {
-    altitudeFootConversion(e.target.value)
-    temperatureReset()
-}
-
-speedKnotsInput.addEventListener('input', speedKnotsTrigger)
-speedMetricInput.addEventListener('input', speedMetricTrigger)
-altitudeFootInput.addEventListener('input', altitudeFootTrigger)
-altitudeMetricInput.addEventListener('input', altitudeMetricTrigger)
+speedKnotsInput.addEventListener('input', (e) => {speedConversion(e, "knots")})
+speedMetricInput.addEventListener('input', (e) => {speedConversion(e, "meter")})
+altitudeFootInput.addEventListener('input', (e) => {altitudeConversion(e, "foot")})
+altitudeMetricInput.addEventListener('input',(e) => {altitudeConversion(e, "meter")})
 machInput.addEventListener('input', machTrigger)
-
