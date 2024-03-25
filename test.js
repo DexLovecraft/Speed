@@ -63,6 +63,13 @@ const altitudeConversion = (e, type) => {
     temperatureConversion(altitudeMeter)
 }
 
+const machOperation = (temperature) => {
+    let machValue = 0
+    machValue = speedKnots/(39*Math.sqrt(temperature))
+    machValue = machValue.toFixed(2)
+    machInput.value = machValue
+}
+
 const speedConversion = (e, type) => {
     if (type == "knots") {
         speed = e.target.value
@@ -75,13 +82,7 @@ const speedConversion = (e, type) => {
     else if (type == "other"){
         speedMetricInput.value = (speed/1.944).toFixed(0)
     }
-}
-
-const machOperation = (temperature) => {
-    let machValue = 0
-    machValue = speedKnots/(39*Math.sqrt(temperature))
-    machValue = machValue.toFixed(2)
-    machInput.value = machValue
+    machOperation(dataTemperature)
 }
 
 const speedOperation = (e, temperature) => {
