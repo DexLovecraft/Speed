@@ -1,4 +1,5 @@
 body{
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     width: 100%;
 }
@@ -10,30 +11,43 @@ h1 {
 
 .input{
     display: flex;
-    width: 250px;
+    height: 50px;
+    width: 300px;
     justify-content: space-between;
     margin: 10px 10px 0 0;
     padding: 5px;
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.speedContainer ,.temperatureContainer{
+.speed , .altitude{
     display: flex;
     flex-direction: row;
 }
 
-form {
+label {
+    margin: auto;
+    text-wrap: balance;
+    text-align: center;
+}
+
+main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-@media (max-width: 978px) {
+@media (max-width: 1024px) {
     h1{
         font-size: 1.8em;
     }
-    .speedContainer ,.temperatureContainer{
+    main {
+        font-size: 0.9em;
+    }
+    .input{
+        width: 250px;
+    }
+    .speed , .altitude{
         flex-direction: column;
         margin-bottom: 20px;
     }
