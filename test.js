@@ -70,6 +70,7 @@ const speedKnotsConversion = (speedMetricUser) => {
 }
 
 const speedMetricConversion = (speedKnotsUser) => {
+    speedKnots = speedKnotsUser
     speedMetric = speedKnotsUser/1.944
     speedMetricInput.value = speedMetric.toFixed(2)
 }
