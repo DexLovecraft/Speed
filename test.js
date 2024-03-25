@@ -26,7 +26,8 @@ let Temperature = {
 
 const speedMetricInput = document.getElementById('SpeedMectric')
 const speedKnotsInput = document.getElementById('SpeedKnots')
-const temperatureInput = document.getElementById('Temperature')
+const altitudeMetricInput = document.getElementById('altitudeMetric')
+const altitudeFootInput = document.getElementById('altitudeFoot')
 const calculateButton = document.getElementById('Calculate')
 const machInput = document.getElementById('Mach')
 let dataTemperature = 0
@@ -34,6 +35,7 @@ let speedKnots = 1.944
 let speedMetric = 1
 let keys = 0
 let machValue = 0
+let altitudeMeter = 0
 
 const temperatureConversion = (AltitudeUser) => {
     
@@ -49,6 +51,18 @@ const temperatureConversion = (AltitudeUser) => {
     }
     dataTemperature = Temperature[keys] + 273.15
 } 
+
+const altitudeMetricConversion = (footUser) => {
+    altitudeMeter = footUser*0.3048 
+    altitudeMetricInput.value = altitudeMeter.toFixed(0)
+    temperatureConversion(altitudeMeter)
+}
+
+const altitudeFootConversion = (metricUser) => {
+    altitudeMeter = metricUser 
+    altitudeFootInput.value = (metricUser/0.3048).toFixed(0)
+    temperatureConversion(altitudeMeter)
+}
 
 const speedKnotsConversion = (speedMetricUser) => {
     speedKnots = speedMetricUser*1.944
@@ -87,17 +101,23 @@ const speedKnotsTrigger = (e) => {
     machOperation(dataTemperature)
 }   
 
-const temperatureTrigger = (e) => {
-    temperatureReset()
-    temperatureConversion(e.target.value)
-} 
-
 const machTrigger = (e) => {
     speedOperation(e.target.value, dataTemperature)
 }
 
+const altitudeFootTrigger = (e) => {
+    altitudeMetricConversion(e.target.value)
+    temperatureReset()
+}
+
+const altitudeMetricTrigger = (e) => {
+    altitudeFootConversion(e.target.value)
+    temperatureReset()
+}
+
 speedKnotsInput.addEventListener('input', speedKnotsTrigger)
 speedMetricInput.addEventListener('input', speedMetricTrigger)
-temperatureInput.addEventListener('input', temperatureTrigger)
+altitudeFootInput.addEventListener('input', altitudeFootTrigger)
+altitudeMetricInput.addEventListener('input', altitudeMetricTrigger)
 machInput.addEventListener('input', machTrigger)
 

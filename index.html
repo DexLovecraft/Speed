@@ -8,9 +8,15 @@
 <body>
     <h1>Convertisseur de vitesse aeronuatique</h1>
     <form>
-        <div class="temperatureContainer input">
-            <label for="Temperature">Altitude en metre</label>
-            <input type="number" id="Temperature" name="Temperature" min="0" max="20000"/>
+        <div class="temperatureContainer">
+            <div class="temperatureMetric input">
+                <label for="altitudeMetric">Altitude en metre</label>
+                <input type="number" id="altitudeMetric" name="altitudeMetric" min="0" max="20000"/>
+            </div>
+            <div class="temperatureFoot input">
+                <label for="altitudeFoot">Altitude en pieds</label>
+                <input type="number" id="altitudeFoot" name="altitudeFoot" min="-500" max="20000"/>
+            </div>          
         </div>
         <div class="speedContainer">
             <div class="metric input">
