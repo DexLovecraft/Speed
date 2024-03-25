@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Convertisseur de vitesse aeronuatique</h1>
+    <form>
+        <div class="temperatureContainer input">
+            <label for="Temperature">Altitude en metre</label>
+            <input type="number" id="Temperature" name="Temperature" min="0" max="20000"/>
+        </div>
+        <div class="speedContainer">
+            <div class="metric input">
+                <label for="SpeedMectric">Vitesse en m/s</label>
+                <input type="number" id="SpeedMectric" name="SpeedMectric" min="0" max="19000"/>
+            </div>  
+            <div class="knots input">
+                <label for="SpeedKnots">Vitesse en noeuds</label>
+                <input type="number" id="SpeedKnots" name="SpeedKnots" min="0" max="19000"/>
+            </div>
+            <div class="mach input">
+                <label for="Mach">Vitesse en Mach</label>
+                <input type="number" id="Mach" name="Mach" min="0" max="19000"/>
+            </div>
+        </div>
+        
+        
+    </form> 
+    <div id="Result"></div>
+    
+
+</body>
+<foot>
+    <script src="./test.js"></script>
+</foot>
+</html>
