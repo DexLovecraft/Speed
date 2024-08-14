@@ -62,5 +62,9 @@ main {
         flex-direction: column;
         margin-bottom: 20px;
     }
+    .QFE{
+        flex-direction: column;
+        text-align: center;
+    }
     
 }
