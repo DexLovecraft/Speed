@@ -5,6 +5,9 @@ const speedKnotsInput = document.getElementById('speed_form_knots')
 const altitudeMetricInput = document.getElementById('altitude_form_metric')
 const altitudeFootInput = document.getElementById('altitude_form_foot')
 const machInput = document.getElementById('mach')
+const QNHInput = document.getElementById('QFE_form_QNH')
+const QFEaltitudeInput = document.getElementById('QFE_form_alt-in-ft')
+let QFEInput = document.getElementById('QFE_form_QFE') 
 let dataTemperature = 0
 let speed = 1.944
 
@@ -51,6 +54,10 @@ const speedConversion = (e, type) => {
     machOperation(dataTemperature)
 }
 
+const QFEOperation = () => {
+    QFEInput.value = (QNHInput.value-(QFEaltitudeInput.value*0.3048)/9.3).toFixed(0)
+}
+
 const machOperation = (temperature) => {
     let machValue = 0
     machValue = speed/(39*Math.sqrt(temperature))
@@ -69,3 +76,13 @@ speedMetricInput.addEventListener('input', (e) => {speedConversion(e, "meter")})
 altitudeFootInput.addEventListener('input', (e) => {altitudeConversion(e, "foot")})
 altitudeMetricInput.addEventListener('input',(e) => {altitudeConversion(e, "meter")})
 machInput.addEventListener('input', (e) => {speedOperation(e, dataTemperature)})
+QNHInput.addEventListener('input', ()=>{
+    if(QNHInput && QFEaltitudeInput != undefined){
+        QFEOperation()
+    }
+})
+QFEaltitudeInput.addEventListener('input', ()=>{
+    if(QNHInput && QFEaltitudeInput != undefined){
+        QFEOperation()
+    }
+})

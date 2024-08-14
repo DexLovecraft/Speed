@@ -24,6 +24,17 @@ h1 {
     flex-direction: row;
 }
 
+.QFE{
+    display: flex;
+    align-self: center;
+}
+.QFE p{
+    margin: auto 3px; 
+}
+
+.QFE .input{
+    flex-direction: column;
+}
 label {
     margin: auto;
     text-wrap: balance;
